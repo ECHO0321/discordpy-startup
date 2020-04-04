@@ -64,4 +64,8 @@ async def timer1h(ctx):
     await asyncio.sleep(3600)
     await ctx.send('1時間経ちました！')
     
+@bot.command()
+async def stoptimer(ctx):
+    asyncio.exit:
+    
 bot.run(token)
