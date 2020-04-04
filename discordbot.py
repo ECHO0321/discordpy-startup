@@ -7,13 +7,40 @@ import asyncio
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
+voice = None
+player = None
 
 client = discord.Client()  # 接続に使用するオブジェクト
 
-# 起動時
 @client.event
-async def on_ready():
-    print('ログイン成功')
+async def on_message(message):
+    global voice, player
+    msg = message.content
+    if message.author.bot:
+        return
+    
+    if msg == '/join':
+        if message.author.voice_channel is None:
+            await client.send_message(message.channel ,'ボイスチャンネルに参加してからコマンドを打ってください。')
+            return
+        if voice == None:
+            # ボイスチャンネルIDが未指定なら
+            if discord_voice_channel_id == '':
+                voice = await client.join_voice_channel(message.author.voice_channel)
+            # ボイスチャンネルIDが指定されていたら
+            else:
+                voice = await client.join_voice_channel(client.get_channel(discord_voice_channel_id))
+        # 接続済みか確認
+        elif(voice.is_connected() == True):
+            # 再生中の場合は一度停止
+            if(player.is_playing()):
+                player.stop()
+            # ボイスチャンネルIDが未指定なら
+            if discord_voice_channel_id == '':
+                await voice.move_to(message.author.voice_channel)
+            # ボイスチャンネルIDが指定されていたら
+            else:
+                await voice.move_to(client.get_channel(discord_voice_channel_id))
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -75,6 +102,14 @@ async def timer1h(ctx):
     await asyncio.sleep(1800)
     await ctx.send('1時間経ちました！')
     
+    
+       # botをボイスチャットから切断させる
+    if msg == '!disconnect':
+        if voice is not None:
+            await voice.disconnect()
+            voice = None
+            return
+
 bot.run(token)
 # botとしてDiscordに接続(botのトークンを指定)
 client.run('TOKEN_OF_YOUR_BOT')
