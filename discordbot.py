@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 import os
 import traceback
 import asyncio
@@ -6,7 +7,14 @@ import asyncio
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
-python run.py
+
+client = discord.Client()  # 接続に使用するオブジェクト
+
+# 起動時
+@client.event
+async def on_ready():
+    print('ログイン成功')
+
 @bot.event
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
@@ -65,3 +73,5 @@ async def timer1h(ctx):
     await ctx.send('1時間経ちました！')
     
 bot.run(token)
+# botとしてDiscordに接続(botのトークンを指定)
+client.run('TOKEN_OF_YOUR_BOT')
