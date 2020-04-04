@@ -1,5 +1,4 @@
 from discord.ext import commands
-import discord
 import os
 import traceback
 import asyncio
@@ -7,7 +6,26 @@ import asyncio
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
+#
+import discord
 
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+
+@client.event
+async def on_message(message):
+    if message.content.startswith("はろー"):
+        m = "こんにちは、" + message.author.name + "さん"
+        await client.send_message(message.channel,m)
+
+client.run('Njk1OTMxMjQ2MjIzODE4ODM1.Xoi4pg.wRHv4Zac0Wo4pxvdlNJpVhFeySc')
+#
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -65,9 +83,5 @@ async def timer1h(ctx):
     await ctx.send('1時間計測します！')
     await asyncio.sleep(3600)
     await ctx.send('1時間経ちました！')
-    
-@bot.command()
-async def stoptimer(ctx):
-    asyncio.exit:
     
 bot.run(token)
