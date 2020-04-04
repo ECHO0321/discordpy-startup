@@ -9,16 +9,6 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 client = discord.Client()  # 接続に使用するオブジェクト
 
-@client.event
-async def join(ctx):
-    await client.join_voice_channel(message.author.voice_channel)
-    return
-    
-# botをボイスチャットから切断させる
-async def disconnect(ctx):
-    await voice.disconnect()
-    return
-
 @bot.event
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
@@ -79,6 +69,17 @@ async def timer1h(ctx):
     await asyncio.sleep(1800)
     await ctx.send('1時間経ちました！')
     
+@bot.command()
+async def join(ctx):
+    await client.join_voice_channel(message.author.voice_channel)
+    return
+    
+# botをボイスチャットから切断させる
+@bot.command()
+async def disconnect(ctx):
+    await voice.disconnect()
+    return
+
 
 bot.run(token)
 # botとしてDiscordに接続(botのトークンを指定)
