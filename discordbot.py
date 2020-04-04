@@ -74,6 +74,7 @@ async def timer1h(ctx):
     
 @bot.command()
     async def stoptimer(ctx):
+    await ctx.send('すべてのタイマーを停止します！')
     sys.exit():
     
 bot.run(token)
