@@ -24,19 +24,19 @@ async def neko(ctx):
 #テスト
 @bot.command()
 async def timer02(ctx):
-    if message.content == '!timer02':
+    if message.content == 'timer02':
         await asyncio.sleep(12)
         await ctx.send('12秒経ちました！')
     
 @bot.command()
 async def timer5(ctx):
-    if message.content == '!timer5':
+    if message.content == 'timer5':
         await asyncio.sleep(300)
         await ctx.send('5分経ちました！')
         
 @bot.command()
 async def timer10(ctx):
-    if message.content == '!timer10':
+    if message.content == 'timer10':
         await asyncio.sleep(600)
         await ctx.send('10分経ちました！')
 
