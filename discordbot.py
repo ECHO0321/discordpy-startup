@@ -4,9 +4,6 @@ import os
 import traceback
 import asyncio
 
-$ pip install youtube_dl
-$ pip install pynacl
-
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
@@ -35,9 +32,6 @@ async def on_message(message):
                 voice = await client.join_voice_channel(client.get_channel(discord_voice_channel_id))
         # 接続済みか確認
         elif(voice.is_connected() == True):
-            # 再生中の場合は一度停止
-            if(player.is_playing()):
-                player.stop()
             # ボイスチャンネルIDが未指定なら
             if discord_voice_channel_id == '':
                 await voice.move_to(message.author.voice_channel)
