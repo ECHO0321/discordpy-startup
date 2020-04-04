@@ -8,22 +8,32 @@ bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
 
+#
+# 自分のBotのアクセストークンに置き換えてください
+TOKEN = 'Njk1OTMxMjQ2MjIzODE4ODM1.Xoi0nQ.6216s7zwtEn9jh4ls5VBJhxUmpk'
+
+# 接続に必要なオブジェクトを生成
 client = discord.Client()
 
+# 起動時に動作する処理
 @client.event
 async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+    # 起動したらターミナルにログイン通知が表示される
+    print('ログインしました')
 
+# メッセージ受信時に動作する処理
 @client.event
 async def on_message(message):
-    if message.content.startswith("はろー"):
-        m = "こんにちは、" + message.author.name + "さん"
-        await client.send_message(message.channel,m)
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    # 「/neko」と発言したら「にゃーん」が返る処理
+    if message.content == '/neko':
+        await message.channel.send('にゃーん')
 
-client.run('token')
+# Botの起動とDiscordサーバーへの接続
+client.run(TOKEN)
+#
 
 
 @bot.event
