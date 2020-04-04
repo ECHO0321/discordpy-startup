@@ -39,10 +39,3 @@ async def timer10(ctx):
     if message.content == '!timer10':
         await asyncio.sleep(600)
         await ctx.send('10分経ちました！')
-
-#ループ処理
-time_check.start()
-# Botの起動とDiscordサーバーへの接続
-client.run(TOKEN)
-
-bot.run(token)
