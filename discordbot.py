@@ -1,6 +1,7 @@
 from discord.ext import commands
 import os
 import traceback
+import asyncio
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -20,5 +21,28 @@ async def ping(ctx):
 async def neko(ctx):
     await ctx.send('にゃーん')
 
+#テスト
+@bot.command()
+async def timer02(ctx):
+    if message.content == '!timer02':
+        await asyncio.sleep(12)
+        await ctx.send('12秒経ちました！')
+    
+@bot.command()
+async def timer5(ctx):
+    if message.content == '!timer5':
+        await asyncio.sleep(300)
+        await ctx.send('5分経ちました！')
+        
+@bot.command()
+async def timer10(ctx):
+    if message.content == '!timer10':
+        await asyncio.sleep(600)
+        await ctx.send('10分経ちました！')
+
+#ループ処理
+time_check.start()
+# Botの起動とDiscordサーバーへの接続
+client.run(TOKEN)
 
 bot.run(token)
