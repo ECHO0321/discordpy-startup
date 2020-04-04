@@ -82,5 +82,5 @@ async def disconnect(ctx):
 
 
 bot.run(token)
-# botとしてDiscordに接続(botのトークンを指定)aaa
-client.run('TOKEN_OF_YOUR_BOT')
+# botとしてDiscordに接続(botのトークンを指定)
+client.run(token)
