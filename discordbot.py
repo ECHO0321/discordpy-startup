@@ -69,7 +69,9 @@ async def timer30m(ctx):
 @bot.command()
 async def timer1h(ctx):
     await ctx.send('1時間計測します！')
-    await asyncio.sleep(3600)
+    await asyncio.sleep(1800)
+    await ctx.send('あと30分です！')
+    await asyncio.sleep(1800)
     await ctx.send('1時間経ちました！')
     
 bot.run(token)
