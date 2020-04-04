@@ -41,6 +41,14 @@ async def on_message(message):
             # ボイスチャンネルIDが指定されていたら
             else:
                 await voice.move_to(client.get_channel(discord_voice_channel_id))
+        return
+    
+       # botをボイスチャットから切断させる
+    if msg == '/disconnect':
+        if voice is not None:
+            await voice.disconnect()
+            voice = None
+            return
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -102,13 +110,6 @@ async def timer1h(ctx):
     await asyncio.sleep(1800)
     await ctx.send('1時間経ちました！')
     
-    
-       # botをボイスチャットから切断させる
-    if msg == '/disconnect':
-        if voice is not None:
-            await voice.disconnect()
-            voice = None
-            return
 
 bot.run(token)
 # botとしてDiscordに接続(botのトークンを指定)
