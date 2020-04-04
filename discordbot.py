@@ -29,6 +29,7 @@ async def ping(ctx):
 async def neko(ctx):
     await ctx.send('にゃーん')
     print("\007")
+    await ctx.send('にゃーん')
 
 #テスト
 @bot.command()
