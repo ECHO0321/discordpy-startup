@@ -39,3 +39,5 @@ async def timer10(ctx):
     if message.content == '!timer10':
         await asyncio.sleep(600)
         await ctx.send('10分経ちました！')
+
+bot.run(token)
