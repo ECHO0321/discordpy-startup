@@ -23,18 +23,45 @@ async def neko(ctx):
 
 #テスト
 @bot.command()
-async def timer02(ctx):
-    await asyncio.sleep(12)
-    await ctx.send('12秒経ちました！')
+async def timer15s(ctx):
+    await ctx.send('15秒計測します！')
+    await asyncio.sleep(15)
+    await ctx.send('15秒経ちました！')
     
 @bot.command()
-async def timer5(ctx):
+async def timer30s(ctx):
+    await ctx.send('30秒計測します！')
+    await asyncio.sleep(30)
+    await ctx.send('30秒経ちました！')
+    
+@bot.command()
+async def timer5m(ctx):
+    await ctx.send('5分計測します！')
     await asyncio.sleep(300)
     await ctx.send('5分経ちました！')
         
 @bot.command()
-async def timer10(ctx):
+async def timer10m(ctx):
+    await ctx.send('10分計測します！')
     await asyncio.sleep(600)
     await ctx.send('10分経ちました！')
+        
+@bot.command()
+async def timer20m(ctx):
+    await ctx.send('20分計測します！')
+    await asyncio.sleep(1200)
+    await ctx.send('20分経ちました！')
 
+@bot.command()
+async def timer30m(ctx):
+    await ctx.send('30分計測します！')
+    await asyncio.sleep(1800)
+    await ctx.send('30分経ちました！')
+    
+@bot.command()
+async def timer1h(ctx):
+    await ctx.send('1時間計測します！')
+    await asyncio.sleep(3600)
+    await ctx.send('1時間経ちました！')
+    
 bot.run(token)
