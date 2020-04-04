@@ -104,7 +104,7 @@ async def timer1h(ctx):
     
     
        # botをボイスチャットから切断させる
-    if msg == '!disconnect':
+    if msg == '/disconnect':
         if voice is not None:
             await voice.disconnect()
             voice = None
