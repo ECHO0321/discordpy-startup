@@ -72,6 +72,10 @@ async def timer1h(ctx):
     await asyncio.sleep(3600)
     await ctx.send('1時間経ちました！')
     
+@bot.command()
+    async def stoptimer(ctx):
+    sys.exit():
+    
 bot.run(token)
 # botとしてDiscordに接続(botのトークンを指定)
 client.run('TOKEN_OF_YOUR_BOT')
