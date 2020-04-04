@@ -7,45 +7,17 @@ import asyncio
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
-voice = None
-player = None
-
 client = discord.Client()  # 接続に使用するオブジェクト
 
 @client.event
-async def on_message(message):
-    global voice, player
-    msg = message.content
-    if message.author.bot:
-        return
+async def join(ctx):
+    await client.join_voice_channel(message.author.voice_channel)
+    return
     
-    if msg == '/join':
-        if message.author.voice_channel is None:
-            await client.send_message(message.channel ,'ボイスチャンネルに参加してからコマンドを打ってください。')
-            return
-        if voice == None:
-            # ボイスチャンネルIDが未指定なら
-            if discord_voice_channel_id == '':
-                voice = await client.join_voice_channel(message.author.voice_channel)
-            # ボイスチャンネルIDが指定されていたら
-            else:
-                voice = await client.join_voice_channel(client.get_channel(discord_voice_channel_id))
-        # 接続済みか確認
-        elif(voice.is_connected() == True):
-            # ボイスチャンネルIDが未指定なら
-            if discord_voice_channel_id == '':
-                await voice.move_to(message.author.voice_channel)
-            # ボイスチャンネルIDが指定されていたら
-            else:
-                await voice.move_to(client.get_channel(discord_voice_channel_id))
-        return
-    
-       # botをボイスチャットから切断させる
-    if msg == '/disconnect':
-        if voice is not None:
-            await voice.disconnect()
-            voice = None
-            return
+# botをボイスチャットから切断させる
+async def disconnect(ctx):
+    await voice.disconnect()
+    return
 
 @bot.event
 async def on_command_error(ctx, error):
