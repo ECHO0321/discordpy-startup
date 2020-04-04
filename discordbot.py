@@ -4,6 +4,9 @@ import os
 import traceback
 import asyncio
 
+$ pip install youtube_dl
+$ pip install pynacl
+
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
